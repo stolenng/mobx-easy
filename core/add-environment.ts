@@ -12,7 +12,7 @@ const addEnvironment = (wrapperItems: WrapperItems) => {
 };
 
 const addEnvironmentById = (wrapperItems: WrapperItems) => {
-  return (wrapperId?: string) => {
+  return (wrapperId: string) => {
     return <T extends Constructor>(BaseClass: T) => {
       return class extends BaseClass {
         getEnv() {

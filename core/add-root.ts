@@ -1,5 +1,5 @@
 import { Constructor, WrapperItems } from "../common/types";
-import { getFirstWrapper } from "../common/utils";
+import {getFirstWrapper, getWrapper} from "../common/utils";
 
 const addRoot = (wrapperItems: WrapperItems) => {
   return <T extends Constructor>(BaseClass: T) => {
@@ -16,7 +16,7 @@ const addRootById = (wrapperItems: WrapperItems) => {
     return <T extends Constructor>(BaseClass: T) => {
       return class extends BaseClass {
         getRoot() {
-          return wrapperItems.get(wrapperId).root;
+          return getWrapper(wrapperItems, wrapperId).root;
         }
       };
     };

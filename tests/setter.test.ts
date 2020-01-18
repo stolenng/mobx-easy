@@ -1,6 +1,6 @@
-import {action, observable} from "mobx";
+import {observable} from "mobx";
 import * as faker from 'faker';
-import {setter} from "../core/setter";
+import {setter} from "../index";
 
 describe('setter', () => {
     const initialWord = faker.random.word(), changedWord = faker.random.word();
