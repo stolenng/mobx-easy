@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./dist/",
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "lib": [
+      "es2015",
+      "dom"
+    ]
+  },
+  "files": [
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts"
+  ]
+}
