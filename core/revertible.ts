@@ -12,17 +12,9 @@ type Change = {
 const ActionName = 'revert';
 const ActionDisposerName = 'disposeRevertObserver';
 
-const normalizeValue = (oldValue: any) => {
-  if (typeof oldValue === 'object') {
-    return Object.assign({}, oldValue);
-  }
-
-  return oldValue;
-}
-
 const revertible = (propsToWatch: string[]) => {
   if (!propsToWatch || propsToWatch.length === 0) {
-    throw new Error('Please provide an array of properties to watch');
+    throw new Error('[mobx-easy] - Please provide an array of properties to watch');
   }
 
   return function <T extends Constructor>(BaseClass: T) {
@@ -32,7 +24,7 @@ const revertible = (propsToWatch: string[]) => {
       const disposer = observe(self, change => {
         const {name, oldValue} = change as Change;
 
-        prevState.set(name, normalizeValue(oldValue));
+        prevState.set(name, oldValue);
       });
 
       return {
