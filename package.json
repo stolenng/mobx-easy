@@ -1,8 +1,9 @@
 {
   "name": "mobx-easy",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Mobx made easier",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "jest --runInBand",
     "build": "rm -rf dist && tsc"
@@ -21,6 +22,9 @@
   "dependencies": {
     "mobx": "^5.15.2"
   },
+  "files": [
+    "dist/*"
+  ],
   "peerDependencies": {
     "mobx": ">=5"
   }

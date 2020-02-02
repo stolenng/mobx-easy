@@ -9,7 +9,6 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "inlineSourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
