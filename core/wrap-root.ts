@@ -1,35 +1,42 @@
 import { WrapperItems } from "../common/types";
-import { generateId } from "../common/utils";
+import {generateId, logPrefix} from "../common/utils";
+
+export interface IInit {
+  init: () => void;
+}
+
+export interface WrapRootOptions<E, R> {
+  RootStore: new () => R;
+  env: E;
+  wrapperName?: string;
+}
 
 const wrapRoot = (wrapperItems: WrapperItems) => {
-  return <E>(RootStore: any, env: E) => {
+  return <R extends IInit, E>({RootStore, env, wrapperName}: WrapRootOptions<E, R>): R => {
     const id = generateId();
-    let root;
 
     if (!env) {
-      throw new Error("No environment was passed!");
+      throw new Error(`${logPrefix} no environment was passed!`);
     }
 
-    const instance = new RootStore();
+    const instance: R = new RootStore();
 
-    if (!instance.init || typeof instance.init !== "function") {
-      throw new Error("Root Store must have init function!");
+    if (initFunctionDoesntExists(instance)) {
+      throw new Error(`${logPrefix} root store must have init function!`);
     }
 
-    root = instance;
-
-    wrapperItems.set(id, {
+    wrapperItems.set(wrapperName || id, {
       environmentData: env,
-      root
+      root: instance
     });
+
     instance.init();
 
-    return {
-      instance,
-      id
-    };
+    return instance;
   };
 };
+
+const initFunctionDoesntExists = (instance) => !instance.init || typeof instance.init !== "function";
 
 export {
   wrapRoot

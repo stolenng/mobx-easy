@@ -3,11 +3,10 @@ import * as faker from 'faker';
 import {addComputations} from "../core/add-computations";
 
 describe('addComputations', () => {
-    const firstName = faker.random.word(), lastName = faker.random.word(), spy = jest.fn();
+    const firstName = faker.random.word(), lastName = faker.random.word();
 
     const computations = (self: ComputationLess) => ({
         getFullName: () => {
-            spy();
             return `${self.firstName}_${self.lastName}`
         }
     });

@@ -1,8 +1,10 @@
 import { SharedData, WrapperItems } from "./types";
 
+const logPrefix = `[mobx-easy] -`;
+
 const getFirstWrapper = (wrapperItems: WrapperItems) => {
   if (wrapperItems.size === 0) {
-    throw new Error("no wrapped items!");
+    throw new Error(`${logPrefix} no wrapped items!`);
   }
 
   const values = wrapperItems.values();
@@ -14,7 +16,7 @@ const getWrapper = (wrapperItems: WrapperItems, wrapperId: string): SharedData<a
   const wrapper = wrapperItems.get(wrapperId);
 
   if (!wrapper) {
-    throw new Error(`no wrapper items id: ${wrapperId}, wrapperItems size: ${wrapperItems.size}`);
+    throw new Error(`${logPrefix} no wrapper items id: ${wrapperId}, wrapperItems size: ${wrapperItems.size}`);
   }
 
   return wrapper;
@@ -25,6 +27,7 @@ const generateId = (): string => {
 };
 
 export {
+  logPrefix,
   getFirstWrapper,
   generateId,
   getWrapper

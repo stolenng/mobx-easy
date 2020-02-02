@@ -1,5 +1,6 @@
 import {Constructor} from "../common/types";
 import {action, observe} from "mobx";
+import {logPrefix} from "../common/utils";
 
 type Change = {
   name: string;
@@ -14,7 +15,7 @@ const ActionDisposerName = 'disposeRevertObserver';
 
 const revertible = (propsToWatch: string[]) => {
   if (!propsToWatch || propsToWatch.length === 0) {
-    throw new Error('[mobx-easy] - Please provide an array of properties to watch');
+    throw new Error(`${logPrefix} Please provide an array of properties to watch`);
   }
 
   return function <T extends Constructor>(BaseClass: T) {

@@ -20,5 +20,8 @@
   },
   "dependencies": {
     "mobx": "^5.15.2"
+  },
+  "peerDependencies": {
+    "mobx": ">=5"
   }
 }

@@ -11,12 +11,12 @@ const addRoot = (wrapperItems: WrapperItems) => {
   };
 };
 
-const addRootById = (wrapperItems: WrapperItems) => {
-  return (wrapperId: string) => {
+const addRootByName = (wrapperItems: WrapperItems) => {
+  return (wrapperName: string) => {
     return <T extends Constructor>(BaseClass: T) => {
       return class extends BaseClass {
         getRoot() {
-          return getWrapper(wrapperItems, wrapperId).root;
+          return getWrapper(wrapperItems, wrapperName).root;
         }
       };
     };
@@ -25,5 +25,5 @@ const addRootById = (wrapperItems: WrapperItems) => {
 
 export {
   addRoot,
-  addRootById
+  addRootByName
 };
