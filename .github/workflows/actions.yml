@@ -1,0 +1,30 @@
+name: CI
+
+on: 
+push:
+branches:
+-master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+  steps:
+- uses: actions/checkout@v1
+- uses: actions/setup-node@v1
+  with:
+    node-version: '10.x'
+- name: Run Tests
+  run: npm test
+  - name: Coverage check
+  uses: devmasx/coverage-check-action@v1.1.0
+  with:
+    # lcov | simplecov
+    type: # default is lcov
+    # Github token for create checks
+    token: # default is World
+    # Minimum coverage
+    min_coverage: # optional, default is 80
+    # Json with coverage result
+    result_path: 
