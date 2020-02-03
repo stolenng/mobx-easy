@@ -7,12 +7,16 @@ describe('setter', () => {
 
     interface TestClass {
         setTestProp: (key: string) => void;
+        setDefaultValue: (key?: string) => void;
     }
 
     class TestClass {
         @setter('setTestProp')
         @observable
         testProp: string = initialWord;
+        @setter('setDefaultValue', 'defaultValue')
+        @observable
+        withDefaultValue: string = '';
     }
 
     it("should add setter", () => {
@@ -25,5 +29,11 @@ describe('setter', () => {
         const instance = new TestClass();
         instance.setTestProp(changedWord);
         expect(instance.testProp).toEqual(changedWord);
+    });
+
+    it("should set value with the setter default value", () => {
+        const instance = new TestClass();
+        instance.setDefaultValue();
+        expect(instance.withDefaultValue).toEqual('defaultValue');
     });
 });

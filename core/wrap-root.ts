@@ -25,6 +25,10 @@ const wrapRoot = (wrapperItems: WrapperItems) => {
       throw new Error(`${logPrefix} root store must have init function!`);
     }
 
+    if (wrapperName && wrapperItems.get(wrapperName)) {
+      throw new Error(`${logPrefix} wrapper name already exists! please provide different name.`);
+    }
+
     wrapperItems.set(wrapperName || id, {
       environmentData: env,
       root: instance
