@@ -21,7 +21,7 @@ Let's image we have a class with 60 properties, instead of writing for each `@ob
        firstName: boolean;
      }
 
-    @allObservable(["id])
+    @allObservable(["id"])
     class Test {
         constructor(hugeType: HugeType) {
             Object.assign(this, hugeType);

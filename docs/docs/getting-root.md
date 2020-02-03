@@ -29,7 +29,6 @@ Lets take the `SomeStore`, and add it `getRoot` from `mobx-easy`.
 ```
 import {getRoot} from 'mobx-easy;
 
-@addRoot
 Class SomeStore {
      constructor() {
         this.moreStore = new SomeStore(getRoot());
@@ -60,7 +59,7 @@ Same, but with a name passed for people using multiple root stores.
 ```
 import {addRootByName} from 'mobx-easy;
 
-@addRoot("wrapperName")
+@addRootByName("wrapperName")
 Class SomeStore {
      constructor() {
         this.moreStore = new SomeStore(this.getRoot());

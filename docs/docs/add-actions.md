@@ -3,7 +3,7 @@ id: add-actions
 title: Adding Actions
 sidebar_label: @addActions
 ---
-Ever had to big mobx class ? 
+Ever had too big mobx class ? 
 <br>
 Wanted to start composing actions ?
 

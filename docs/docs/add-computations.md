@@ -3,7 +3,7 @@ id: add-computations
 title: Adding Computation
 sidebar_label: @addComputations
 ---
-Ever had to big mobx class ? 
+Ever had too big mobx class ? 
 <br>
 Wanted to start composing computed values ?
 

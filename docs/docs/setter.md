@@ -27,8 +27,6 @@ instance.testProp; // 'something'
 
 instance.setDefaultValue();
 
-instance.setDefaultValue();
-
 instance.withDefaultvalue; // 'defaultValue'
 ```
 
