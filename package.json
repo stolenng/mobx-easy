@@ -1,6 +1,6 @@
 {
   "name": "mobx-easy",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "Mobx made easier",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -8,8 +8,12 @@
     "test": "jest --runInBand",
     "build": "rm -rf dist && tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stolenng/mobx-easy"
+  },
   "author": "Georgy Glezer",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/faker": "^4.1.9",
     "@types/jest": "^24.9.0",
