@@ -1,0 +1,40 @@
+{
+  "Documentation": {
+    "Introduction": [
+      "intro"
+    ],
+    "Docs": [
+      "getting-started",
+      {
+        "type": "subcategory",
+        "label": "Simple Dependency Injection",
+        "ids": [
+          "getting-root",
+          "getting-environment",
+          "remove-root"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "MobX Helper Decorators",
+        "ids": [
+          "add-actions",
+          "add-computations",
+          "all-observable",
+          "setter",
+          "revertible"
+        ]
+      },
+      {
+        "type": "subcategory",
+        "label": "Misc",
+        "ids": [
+          "tests",
+          "typescript",
+          "import",
+          "help"
+        ]
+      }
+    ]
+  }
+}
