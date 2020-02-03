@@ -1,5 +1,5 @@
 import * as faker from 'faker';
-import {addRoot as addRootInit, addRootByName as addRootByNameInit} from "../core/add-root";
+import {addRoot as addRootInit, addRootByName as addRootByNameInit, getRoot as getRootInit} from "../core/add-root";
 import {wrapRoot as wrapRootInit} from "../core/wrap-root";
 
 describe('addRoot', () => {
@@ -110,4 +110,53 @@ describe('addRoot', () => {
         expect(result1.notRoot.getRoot()).toEqual(result1);
         expect(result2.notRoot.getRoot()).toEqual(result2);
     })
+});
+
+describe('getRoot', () => {
+    let wrapRoot, getRoot, env;
+    const initSpy = jest.fn(), wrapperItems = new Map();
+
+    beforeEach(() => {
+        wrapRoot = wrapRootInit(wrapperItems);
+        getRoot = getRootInit(wrapperItems);
+
+        env = {
+            test: faker.random.number()
+        };
+    });
+
+    afterEach(() => {
+        wrapperItems.clear();
+    });
+
+    it('should return root instance', () => {
+        class Root {
+            init() {
+            }
+        }
+
+        const result = wrapRoot({
+            RootStore: Root,
+            env: {}
+        });
+
+        expect(result).toEqual(getRoot());
+    });
+
+    it('should return root instance by name', () => {
+        const fakeName = faker.random.word();
+
+        class Root {
+            init() {
+            }
+        }
+
+        const result = wrapRoot({
+            RootStore: Root,
+            env: {},
+            wrapperName: fakeName
+        });
+
+        expect(result).toEqual(getRoot(fakeName));
+    });
 });

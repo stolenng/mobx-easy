@@ -1,6 +1,11 @@
 import * as faker from 'faker';
 import {wrapRoot as wrapRootInit} from "../core/wrap-root";
-import { addEnvironment as addEnvironmentInit, addEnvironmentByName as addEnvironmentByNameInit } from "../core/add-environment";
+import {
+    addEnvironment as addEnvironmentInit,
+    addEnvironmentByName as addEnvironmentByNameInit,
+    getEnv as getEnvInit
+} from "../core/add-environment";
+import {getRoot as getRootInit} from "../core/add-root";
 
 
 describe('addEnvironment', () => {
@@ -113,4 +118,54 @@ describe('addEnvironment', () => {
         expect(result1.notRoot.getEnv()).toEqual(env);
         expect(result2.notRoot.getEnv()).toEqual(env2);
     })
+});
+
+
+describe('getEnv', () => {
+    let wrapRoot, getEnv, env;
+    const initSpy = jest.fn(), wrapperItems = new Map();
+
+    beforeEach(() => {
+        wrapRoot = wrapRootInit(wrapperItems);
+        getEnv = getEnvInit(wrapperItems);
+
+        env = {
+            test: faker.random.number()
+        };
+    });
+
+    afterEach(() => {
+        wrapperItems.clear();
+    });
+
+    it('should return env', () => {
+        class Root {
+            init() {
+            }
+        }
+
+        wrapRoot({
+            RootStore: Root,
+            env
+        });
+
+        expect(getEnv()).toEqual(env);
+    });
+
+    it('should return env by name', () => {
+        const fakeName = faker.random.word();
+
+        class Root {
+            init() {
+            }
+        }
+
+        wrapRoot({
+            RootStore: Root,
+            env,
+            wrapperName: fakeName
+        });
+
+        expect(getEnv(fakeName)).toEqual(env);
+    });
 });

@@ -23,7 +23,18 @@ const addRootByName = (wrapperItems: WrapperItems) => {
   };
 };
 
+const getRoot = (wrapperItems: WrapperItems) => {
+  return <T>(wrapperName?: string): T => {
+    if (wrapperName) {
+      return getWrapper(wrapperItems, wrapperName).root;
+    } else {
+      return getFirstWrapper(wrapperItems).value.root;
+    }
+  }
+};
+
 export {
+  getRoot,
   addRoot,
   addRootByName
 };

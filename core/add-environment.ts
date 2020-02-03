@@ -23,7 +23,18 @@ const addEnvironmentByName = (wrapperItems: WrapperItems) => {
   };
 };
 
+const getEnv = (wrapperItems: WrapperItems) => {
+  return <T>(wrapperName?: string): T => {
+    if (wrapperName) {
+      return getWrapper(wrapperItems, wrapperName).environmentData;
+    } else {
+      return getFirstWrapper(wrapperItems).value.environmentData;
+    }
+  }
+};
+
 export {
+  getEnv,
   addEnvironment,
   addEnvironmentByName
 };
