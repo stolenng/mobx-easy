@@ -5,7 +5,7 @@
     "declaration": true,
     "outDir": "./dist/",
     "target": "es6",
-    "module": "esnext",
+    "module": "commonjs",
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
