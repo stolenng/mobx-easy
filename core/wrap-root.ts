@@ -19,7 +19,13 @@ const wrapRoot = (wrapperItems: WrapperItems) => {
       throw new Error(`${logPrefix} no environment was passed!`);
     }
 
-    const instance: R = new RootStore();
+    let instance;
+
+    try {
+      instance = new RootStore();
+    } catch(e) {
+      instance = RootStore;
+    }
 
     if (initFunctionDoesntExists(instance)) {
       throw new Error(`${logPrefix} root store must have init function!`);

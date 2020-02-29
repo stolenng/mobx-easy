@@ -34,6 +34,26 @@ describe('wrapRoot', () => {
             });
         })
 
+        describe('objects', () => {
+            let fakeObject = {init: jest.fn()}, rootObject;
+
+           beforeEach(() => {
+               rootObject = wrapRoot({
+                   RootStore: fakeObject,
+                   env
+               });
+           })
+
+            it('should init successfully', () => {
+                expect(fakeObject.init).toBeCalled();
+            });
+
+            it('should set root and env in wrapperItems', () => {
+                expect(wrapperItems.values().next().value.root).toEqual(result);
+                expect(wrapperItems.values().next().value.environmentData).toEqual(env);
+            });
+        })
+
         it('should return new root instance with id', () => {
             expect(result).toBeInstanceOf(RootStoreWithInit);
         });
