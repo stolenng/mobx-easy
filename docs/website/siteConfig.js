@@ -47,7 +47,6 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/mobx-easy-logo.png',
   footerIcon: 'img/favicon.ico',
   favicon: 'img/favicon.ico',
 

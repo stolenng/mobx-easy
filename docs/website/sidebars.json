@@ -29,7 +29,6 @@
         "type": "subcategory",
         "label": "Misc",
         "ids": [
-          "tests",
           "typescript",
           "import",
           "help"
