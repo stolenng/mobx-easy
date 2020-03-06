@@ -29,6 +29,7 @@
         "type": "subcategory",
         "label": "Misc",
         "ids": [
+          "examples",
           "typescript",
           "import",
           "help"
