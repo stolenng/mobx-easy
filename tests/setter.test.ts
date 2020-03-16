@@ -9,6 +9,7 @@ describe('setter', () => {
         setTestProp: (key: string) => void;
         setDefaultValue: (key?: string) => void;
         setNumber: (number: number) => void;
+        setBoolean: (flag: boolean) => void;
     }
 
     class TestClass {
@@ -21,6 +22,9 @@ describe('setter', () => {
         @setter('setNumber')
         @observable
         number: number = 999;
+        @setter('setBoolean')
+        @observable
+        boolean: boolean = true;
     }
 
     it("should add setter", () => {
@@ -45,5 +49,11 @@ describe('setter', () => {
         const instance = new TestClass();
         instance.setNumber(0);
         expect(instance.number).toEqual(0);
+    });
+
+    it('should save false values', () => {
+        const instance = new TestClass();
+        instance.setBoolean(false);
+        expect(instance.boolean).toBe(false);
     });
 });
