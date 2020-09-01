@@ -1,12 +1,15 @@
 {
   "name": "mobx-easy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Mobx made easier",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "source": "./index.ts",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "test": "jest --runInBand",
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && microbundle"
   },
   "repository": {
     "type": "git",
@@ -19,17 +22,16 @@
     "@types/jest": "^24.9.0",
     "faker": "^4.1.0",
     "jest": "^24.9.0",
+    "microbundle": "^0.12.3",
+    "mobx": "^5.15.2",
     "ts-jest": "^24.3.0",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5"
-  },
-  "dependencies": {
-    "mobx": "^5.15.2"
   },
   "files": [
     "dist/*"
   ],
   "peerDependencies": {
-    "mobx": ">=5"
+    "mobx": ">=5 <6.0.0"
   }
 }

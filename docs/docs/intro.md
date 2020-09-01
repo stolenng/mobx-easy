@@ -9,4 +9,4 @@ Checking out MobX-State-Tree and understanding i don't want to lose MobX simplic
 <br>
 So i decided to write this libraries and try to get out the maximum of MobX while keeping it simple :)
 
-Article about it: SOON.
+Article about it: https://levelup.gitconnected.com/introducing-mobx-easy-cd281ace9e6e.
