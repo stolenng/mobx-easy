@@ -24,7 +24,7 @@ export {allObservable} from './core/all-observable'
 export {
   wrapRoot,
   addEnvironment,
-  addEnvironmentByNameInit,
+  addEnvironmentByName,
   addRoot,
   addRootByName,
   getRoot,

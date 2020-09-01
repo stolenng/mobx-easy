@@ -6,8 +6,7 @@ const setter = (name: string, defaultValue?: any) => {
     return function (target, propertyKey: string) {
         const fnDesc = action.bound(target, name, {
             value: function (value) {
-                const shouldUseValue = value || (typeof value === 'number' && Number.isInteger(value)) || typeof value === 'boolean' || value !== 'undefined';
-                this[propertyKey] = shouldUseValue ? value : defaultValue;
+                this[propertyKey] = value ?? defaultValue;
             }
         }) as any;
 
