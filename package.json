@@ -1,6 +1,6 @@
 {
   "name": "mobx-easy",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mobx made easier",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

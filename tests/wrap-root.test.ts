@@ -7,6 +7,10 @@ describe('wrapRoot', () => {
     const initSpy = jest.fn(), wrapperItems = new Map();
 
     class RootStoreWithInit {
+        data: any;
+        constructor(data: any) {
+            this.data = data;
+        }
         init() {
             initSpy();
         }
@@ -25,10 +29,11 @@ describe('wrapRoot', () => {
     });
 
     describe('successful flow', () => {
-        let result;
+        let result, rootStoreParams = {test: 'true'};
 
         beforeEach(() => {
             result = wrapRoot({
+                rootStoreParams,
                 RootStore: RootStoreWithInit,
                 env
             });
@@ -56,6 +61,10 @@ describe('wrapRoot', () => {
 
         it('should return new root instance with id', () => {
             expect(result).toBeInstanceOf(RootStoreWithInit);
+        });
+
+        it('should create new instance with passed constructor params', () => {
+            expect(result.data).toEqual(rootStoreParams);
         });
 
         it('should set root and env in wrapperItems', () => {
