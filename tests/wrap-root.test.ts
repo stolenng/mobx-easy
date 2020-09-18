@@ -33,7 +33,8 @@ describe('wrapRoot', () => {
 
         beforeEach(() => {
             result = wrapRoot({
-                rootStoreParams,
+                rootStoreConstructorParams: rootStoreParams,
+                rootStoreInitParams: rootStoreParams,
                 RootStore: RootStoreWithInit,
                 env
             });

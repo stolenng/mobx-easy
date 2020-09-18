@@ -1,19 +1,26 @@
 import {WrapperItems} from "../common/types";
 import {generateId, logPrefix} from "../common/utils";
 
-export interface IInit {
-    init: () => void;
+export interface IInit<T> {
+    init: (initParams?: T) => void;
 }
 
-export interface WrapRootOptions<E, R, P> {
-    rootStoreParams?: P;
-    RootStore: new (rootStoreParams?: P) => R;
+export interface WrapRootOptions<E, R, RCP, RIP> {
+    rootStoreConstructorParams?: RCP;
+    rootStoreInitParams?: RIP;
+    RootStore: new (rootStoreParams?: RCP) => R;
     env: E;
     wrapperName?: string;
 }
 
 const wrapRoot = (wrapperItems: WrapperItems) => {
-    return <R extends IInit, E, P>({RootStore, env, wrapperName, rootStoreParams}: WrapRootOptions<E, R, P>): R => {
+    return <R extends IInit<RIP>, E, RCP, RIP>({
+                                              RootStore,
+                                              env,
+                                              wrapperName,
+                                              rootStoreInitParams,
+                                              rootStoreConstructorParams
+                                          }: WrapRootOptions<E, R, RCP, RIP>): R => {
         const id = generateId();
 
         if (!env) {
@@ -23,7 +30,7 @@ const wrapRoot = (wrapperItems: WrapperItems) => {
         let instance;
 
         try {
-            instance = new RootStore(rootStoreParams);
+            instance = new RootStore(rootStoreConstructorParams);
         } catch (e) {
             instance = RootStore;
         }
@@ -41,7 +48,7 @@ const wrapRoot = (wrapperItems: WrapperItems) => {
             root: instance
         });
 
-        instance.init();
+        instance.init(rootStoreInitParams);
 
         return instance;
     };
