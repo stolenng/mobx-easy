@@ -32,6 +32,8 @@ const assignIdsToClassesRecursive = ({baseClass, id}) => {
         return;
     }
 
+    baseClass[classFieldName] = id;
+
     const fieldNames = Object.getOwnPropertyNames(baseClass);
 
     for (let field of fieldNames) {
