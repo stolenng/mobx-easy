@@ -58,6 +58,9 @@ And then you're ready to use `addRoot|addRootByName|getRoot` and `addEnvironment
 wrapRoot receives options object with this interface: 
 ```
 interface WrapRootOptions<E, R> {
+  rootStoreConstructorParams?: RCP; // params to constructor function
+  rootStoreInitParams?: RIP; // params to init function
+  assignIdsToClasses?: boolean; // let mobx-easy assign its own ids to the classes by the field `mobx_easy_id`
   RootStore: new () => R; // Class Instance
   env: E; // Any Environment object you like
   wrapperName?: string; // Optional Name for multiple wrapping

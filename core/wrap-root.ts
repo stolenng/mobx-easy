@@ -1,5 +1,5 @@
 import {WrapperItems} from "../common/types";
-import {generateId, logPrefix} from "../common/utils";
+import {assignIdsToClassesRecursive, generateId, logPrefix} from "../common/utils";
 
 export interface IInit<T> {
     init: (initParams?: T) => void;
@@ -10,17 +10,19 @@ export interface WrapRootOptions<E, R, RCP, RIP> {
     rootStoreInitParams?: RIP;
     RootStore: new (rootStoreParams?: RCP) => R;
     env: E;
+    assignIdsToClasses?: boolean;
     wrapperName?: string;
 }
 
 const wrapRoot = (wrapperItems: WrapperItems) => {
     return <R extends IInit<RIP>, E, RCP, RIP>({
-                                              RootStore,
-                                              env,
-                                              wrapperName,
-                                              rootStoreInitParams,
-                                              rootStoreConstructorParams
-                                          }: WrapRootOptions<E, R, RCP, RIP>): R => {
+                                                   RootStore,
+                                                   env,
+                                                   wrapperName,
+                                                   assignIdsToClasses = false,
+                                                   rootStoreInitParams,
+                                                   rootStoreConstructorParams
+                                               }: WrapRootOptions<E, R, RCP, RIP>): R => {
         const id = generateId();
 
         if (!env) {
@@ -49,6 +51,13 @@ const wrapRoot = (wrapperItems: WrapperItems) => {
         });
 
         instance.init(rootStoreInitParams);
+
+        if (assignIdsToClasses) {
+            assignIdsToClassesRecursive({
+                baseClass: instance,
+                id: wrapperName || id
+            });
+        }
 
         return instance;
     };

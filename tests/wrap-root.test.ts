@@ -1,15 +1,21 @@
 import * as faker from 'faker';
 import {wrapRoot as wrapRootInit} from '../core/wrap-root';
-import {logPrefix} from "../common/utils";
+import {classFieldName, logPrefix} from "../common/utils";
 
 describe('wrapRoot', () => {
     let wrapRoot, env;
     const initSpy = jest.fn(), wrapperItems = new Map();
 
+    class A {
+
+    }
+
     class RootStoreWithInit {
         data: any;
+        classA: A;
         constructor(data: any) {
             this.data = data;
+            this.classA = new A();
         }
         init() {
             initSpy();
@@ -36,6 +42,7 @@ describe('wrapRoot', () => {
                 rootStoreConstructorParams: rootStoreParams,
                 rootStoreInitParams: rootStoreParams,
                 RootStore: RootStoreWithInit,
+                assignIdsToClasses: true,
                 env
             });
         })
@@ -88,6 +95,10 @@ describe('wrapRoot', () => {
 
             expect(wrapperItems.get(customName).root).toEqual(result);
             expect(wrapperItems.get(customName).environmentData).toEqual(env);
+        });
+
+        it('should assign id to class', () => {
+            expect(result.classA[classFieldName]).toBeDefined();
         });
     })
 
