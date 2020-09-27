@@ -40,7 +40,11 @@ const assignIdsToClassesRecursive = ({baseClass, id}) => {
         const currentField = baseClass[field];
         currentField[classFieldName] = id;
 
-        if (currentField.constructor) {
+        if (
+            currentField.constructor &&
+            currentField.constructor !== 'Object' &&
+            currentField.constructor !== 'Function'
+        ) {
             assignIdsToClassesRecursive(currentField);
         }
     }
