@@ -37,7 +37,7 @@ const assignIdsToClassesRecursive = ({baseClass, id}) => {
     const fieldNames = Object.getOwnPropertyNames(baseClass);
 
     for (let field of fieldNames) {
-        if (field === classFieldName || field !== typeof 'object') {
+        if (field === classFieldName) {
             return;
         }
 
@@ -46,8 +46,8 @@ const assignIdsToClassesRecursive = ({baseClass, id}) => {
 
         if (
             currentField.constructor &&
-            currentField.constructor !== 'Object' &&
-            currentField.constructor !== 'Function'
+            currentField.constructor.name !== 'Object' &&
+            currentField.constructor.name !== 'Function'
         ) {
             assignIdsToClassesRecursive(currentField);
         }
