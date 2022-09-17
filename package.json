@@ -28,6 +28,6 @@
     "dist/*"
   ],
   "peerDependencies": {
-    "mobx": ">=5 <6.0.0"
+    "mobx": "6.x"
   }
 }
